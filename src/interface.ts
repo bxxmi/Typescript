@@ -8,6 +8,7 @@ interface Shape {
   getArea(): number;
 }
 
+// 1. 클래스를 설정해보자
 // circle 클래스가 shape interface의 조건을 충족하겠다고 명시
 class Circle implements Shape {
   // 멤버변수 선언
@@ -45,3 +46,33 @@ const shapes: Shape[] = [new Circle(5), new Rectangle(6, 10)];
 shapes.forEach((shape) => {
   console.log(shape.getArea());
 });
+
+// 2. 일반 객체를 설정해보자
+interface Person {
+  name: string;
+  age?: number;
+}
+
+interface Developer1 {
+  name: string;
+  age?: number;
+  skills: string[];
+}
+
+const person: Person = {
+  name: "김김김",
+  age: 2,
+};
+
+const expert: Developer1 = {
+  name: "공공공",
+  skills: ["자바", "자바스크립트"],
+};
+
+// 겹치는 부분이 많기 때문에 아래와 같이 상속받아서 사용할 수 있음
+interface Developer2 extends Person {
+  skills: string[];
+}
+
+// person, export 객체를 Person[] 타입을 가진 people 변수에 담음
+const people: Person[] = [person, expert];
